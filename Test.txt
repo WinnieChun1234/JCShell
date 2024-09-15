@@ -1,0 +1,334 @@
+@Case0: Check if fail to use /proc (Pass:-1, Fail:0)
+Test Case Input:
+```
+
+```
+Test Case Output:
+````
+No points deducted.
+````
+Result: Failed
+Points Awarded: 0
+
+@Case1: PrintPrompt
+Test Case Input:
+```
+ls ./test_folder
+ls ./test_folder
+ls ./test_folder
+```
+Test Case Output:
+````
+helloworld
+helloworld.c
+segfault
+test_file1.txt
+test_file2.txt
+tloop
+tloop1
+tloop2
+tloop3
+helloworld
+helloworld.c
+segfault
+test_file1.txt
+test_file2.txt
+tloop
+tloop1
+tloop2
+tloop3
+helloworld
+helloworld.c
+segfault
+test_file1.txt
+test_file2.txt
+tloop
+tloop1
+tloop2
+tloop3
+## JCshell [215743] ##  (PID)215744 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215743 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215743] ##  (PID)215745 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215743 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215743] ##  (PID)215746 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215743 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215743] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case2: ExecuteStandardPathCommand
+Test Case Input:
+```
+ls ./test_folder
+```
+Test Case Output:
+````
+helloworld
+helloworld.c
+segfault
+test_file1.txt
+test_file2.txt
+tloop
+tloop1
+tloop2
+tloop3
+## JCshell [215747] ##  (PID)215748 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215747 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215747] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case3: ExecuteCommandWithArguments
+Test Case Input:
+```
+ls -Sr ./test_folder
+```
+Test Case Output:
+````
+test_file2.txt
+test_file1.txt
+helloworld.c
+helloworld
+segfault
+tloop3
+tloop2
+tloop1
+tloop
+## JCshell [215749] ##  (PID)215750 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215749 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215749] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case4: ExecuteFullPathCommand
+Test Case Input:
+```
+/bin/ls ./test_folder
+```
+Test Case Output:
+````
+helloworld
+helloworld.c
+segfault
+test_file1.txt
+test_file2.txt
+tloop
+tloop1
+tloop2
+tloop3
+## JCshell [215751] ##  (PID)215752 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215751 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215751] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case5: ExecuteRelativePathCommand
+Test Case Input:
+```
+./test_folder/helloworld
+```
+Test Case Output:
+````
+Hello, World!
+## JCshell [215753] ##  (PID)215754 (CMD)helloworld (STATE)Z (EXCODE)0 (PPID)215753 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215753] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case6: ExecuteInvalidCommand
+Test Case Input:
+```
+invalidcommand
+```
+Test Case Output:
+````
+## JCshell [215755] ##  ## JCshell [215755] ##  ## JCshell [215755] ##  JCshell: Terminated
+JCshell: 'invalidcommand': No such file or directory
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case7: TwoCommandsPipe
+Test Case Input:
+```
+cat ./test_folder/test_file1.txt | grep Hello
+```
+Test Case Output:
+````
+Hello, this is test file 1.
+## JCshell [215757] ##  (PID)215758 (CMD)cat (STATE)Z (EXCODE)0 (PPID)215757 (USER)0.00 (SYS)0.00 (VCTX)2 (NVCTX)0
+(PID)215759 (CMD)grep (STATE)Z (EXCODE)0 (PPID)215757 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215757] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 1.0
+
+@Case8: MultipleCommandsPipe
+Test Case Input:
+```
+ls -Sr ./test_folder | grep .txt | head -n1 | wc -c
+```
+Test Case Output:
+````
+15
+## JCshell [215760] ##  (PID)215761 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215760 (USER)0.00 (SYS)0.00 (VCTX)2 (NVCTX)0
+(PID)215762 (CMD)grep (STATE)Z (EXCODE)0 (PPID)215760 (USER)0.00 (SYS)0.00 (VCTX)2 (NVCTX)0
+(PID)215763 (CMD)head (STATE)Z (EXCODE)0 (PPID)215760 (USER)0.00 (SYS)0.00 (VCTX)3 (NVCTX)0
+(PID)215764 (CMD)wc (STATE)Z (EXCODE)0 (PPID)215760 (USER)0.00 (SYS)0.00 (VCTX)2 (NVCTX)0
+## JCshell [215760] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 1.0
+
+@Case9: PipeErrorHandling
+Test Case Input:
+```
+cat ./test_folder/test_file1.txt || grep test
+```
+Test Case Output:
+````
+## JCshell [215765] ##  JCshell: should not have two | symbols without in-between command
+## JCshell [215765] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case10: PipeAtEnd
+Test Case Input:
+```
+cat ./test_folder/test_file1.txt | grep test |
+```
+Test Case Output:
+````
+## JCshell [215766] ##  JCshell: Incomplete | sequence
+## JCshell [215766] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case12: StatisticsSignal
+Test Case Input:
+```
+./test_folder/segfault
+```
+Test Case Output:
+````
+## JCshell [215767] ##  (PID)215768 (CMD)segfault (STATE)Z (EXSIG)Segmentation fault (PPID)215767 (USER)0.10 (SYS)0.00 (VCTX)3 (NVCTX)4
+## JCshell [215767] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 1.0
+
+@Case13: StatisticsFormatAndAccuracy
+Test Case Input:
+```
+./test_folder/helloworld
+```
+Test Case Output:
+````
+Hello, World!
+## JCshell [215769] ##  (PID)215770 (CMD)helloworld (STATE)Z (EXCODE)0 (PPID)215769 (USER)0.00 (SYS)0.00 (VCTX)1 (NVCTX)0
+## JCshell [215769] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 1.0
+
+@Case14: StatisticsOrder
+Test Case Input:
+```
+ls -Sr test_folder| grep .txt | head -n1 | wc -c
+```
+Test Case Output:
+````
+15
+## JCshell [215771] ##  (PID)215772 (CMD)ls (STATE)Z (EXCODE)0 (PPID)215771 (USER)0.00 (SYS)0.00 (VCTX)2 (NVCTX)0
+(PID)215773 (CMD)grep (STATE)Z (EXCODE)0 (PPID)215771 (USER)0.00 (SYS)0.00 (VCTX)3 (NVCTX)0
+(PID)215774 (CMD)head (STATE)Z (EXCODE)0 (PPID)215771 (USER)0.00 (SYS)0.00 (VCTX)2 (NVCTX)0
+(PID)215775 (CMD)wc (STATE)Z (EXCODE)0 (PPID)215771 (USER)0.00 (SYS)0.00 (VCTX)2 (NVCTX)0
+## JCshell [215771] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 1.0
+
+@Case16: SignalHandlingSIGINT
+Test Case Input:
+```
+Ctrl-C
+```
+Test Case Output:
+````
+(keep running)
+````
+Result: Passed
+Points Awarded: 1.0
+
+@Case17: ExecuteBuiltInExit
+Test Case Input:
+```
+exit
+```
+Test Case Output:
+````
+## JCshell [215779] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+@Case18: IncorrectUsageOfBuiltIn
+Test Case Input:
+```
+exit now
+```
+Test Case Output:
+````
+## JCshell [215780] ##  JCshell: "exit" with other arguments!!!
+## JCshell [215780] ##  JCshell: Terminated
+
+Return Code: 0
+
+````
+Result: Passed
+Points Awarded: 0.5
+
+Final Score: 11.0/11.0

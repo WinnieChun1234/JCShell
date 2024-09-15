@@ -11,7 +11,7 @@ Shell program, commonly known as a command interpreter, is a program that acts a
 4. Print the running statistics of all terminated command(s) and waits for the next command/job from the user, after the submitted command/job terminated.
 
 
-### Implementation Workflow
+### Implementation Workflow (My Tasks)
 1. Create the first version of the JCshell program, which
    1. accepts an input line (contains a command and its arguments) from the user, 
    2. creates a child process to execute the command, 
